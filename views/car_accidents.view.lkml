@@ -9,6 +9,12 @@ view: car_accidents {
     sql: ${TABLE}.ID ;;
   }
 
+  measure: car_accidents {
+    type: count_distinct
+    sql: ${id} ;;
+    value_format: "#,##0"
+  }
+
   dimension: airport_code {
     type: string
     sql: ${TABLE}.Airport_Code ;;
@@ -275,6 +281,13 @@ view: car_accidents {
   dimension: zipcode {
     type: zipcode
     sql: ${TABLE}.Zipcode ;;
+    map_layer_name: us_zipcode_tabulation_areas
+  }
+
+  measure: zip_codes {
+    type: count_distinct
+    sql: ${zipcode} ;;
+    value_format: "#,##0"
   }
 
   measure: count {
